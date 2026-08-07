@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+    inputs:
+      test_notify:
+        description: "Send a test alert to your phone instead of checking Google"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -24,7 +29,14 @@ jobs:
 
       - run: pip install requests beautifulsoup4
 
+      - name: Send a test alert
+        if: inputs.test_notify
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python watcher.py --test-notify
+
       - name: Check for the apply button
+        if: ${{ !inputs.test_notify }}
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
@@ -32,7 +44,12 @@ jobs:
           ALERT_REPEAT_SECONDS: "300"
         run: python watcher.py --once
 
+      - name: Show current status
+        if: ${{ !inputs.test_notify }}
+        run: python watcher.py --status || true
+
       - name: Remember what we saw
+        if: ${{ !inputs.test_notify }}
         run: |
           git config user.name "apply-watch"
           git config user.email "actions@users.noreply.github.com"
