@@ -1,15 +1,15 @@
 {
   "https://www.google.com/about/careers/applications/jobs/results/78703249065943750-software-engineer-early-career-campus": {
     "name": "Google SWE Early Career Campus (US)",
-    "found": true,
-    "alerts_sent": 3,
-    "last_alert": 1786362250.7515123,
+    "found": false,
+    "alerts_sent": 0,
+    "last_alert": 0.0,
     "validators": {
       "etag": null,
       "last_modified": null
     },
-    "fingerprint": "cb9cf012774ab7e37e12bef5c548a5fe2b4b3159d81517e5a979eed484f2c130",
-    "last_checked": "2026-10-01T07:45:56.706403+00:00",
-    "last_evidence": "a matched by href: Apply"
+    "fingerprint": "b0678717455f0ded6237c4a86ce1f00f0b83f07a0509c8024d84ba3e69979c7f",
+    "last_checked": "2026-10-01T14:50:04.363429+00:00",
+    "last_evidence": "no apply control found"
   }
 }
